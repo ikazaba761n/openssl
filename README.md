@@ -23,4 +23,11 @@ Seeding source: os-specific
  openssl genpkey -out sertest.key -aes128 -algorithm RSA -pkeyopt rsa_keygen_bits:4096
  パスフレーズを使って　sertest.key を生成
 
+
+###　.key .pem .pub 拡張子の違い　内容に合わせて使用する
+privatekey は　PUBLIC KEY を作る時に利用　PUBLIC KEYにはprivatekeyも内包
+
+
+#### 公開キー　秘密キー　証明書　署名　各役割を理解してからコマンドを利用
+　openssl のコマンドは　csr　crt　証明書生成　表示　　すべて可能
  
