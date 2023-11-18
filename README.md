@@ -9,7 +9,7 @@ OPENSSLDIR: "/usr/lib/ssl"
 ENGINESDIR: "/usr/lib/x86_64-linux-gnu/engines-1.1"
 Seeding source: os-specific
 
-# versionを表示する　オプション-a
+## versionを表示する　オプション-a
 
  openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 > test9key.pem
 
@@ -24,7 +24,7 @@ Seeding source: os-specific
  パスフレーズを使って　sertest.key を生成
 
 
-###　.key .pem .pub 拡張子の違い　内容に合わせて使用する
+## .key .pem .pub 拡張子の違い　内容に合わせて使用する
 privatekey は　PUBLIC KEY を作る時に利用　PUBLIC KEYにはprivatekeyも内包
 
 
