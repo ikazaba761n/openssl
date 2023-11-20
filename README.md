@@ -30,4 +30,16 @@ privatekey は　PUBLIC KEY を作る時に利用　PUBLIC KEYにはprivatekey�
 
 #### 公開キー　秘密キー　証明書　署名　各役割を理解してからコマンドを利用
 　openssl のコマンドは　csr　crt　証明書生成　表示　　すべて可能
- 
+
+
+ #### パスワードだけを使って　ファイルを暗号化　復号化
+ openssl enc -e -aes-256-cbc -pbkdf2 -in test.jpg -out enctest.jpg
+
+ ファイルを調べてみる
+  file enctest.jpg
+enctest.jpg: openssl enc'd data with salted password
+
+openssl enc -d -aes-256-cbc -pbkdf2 -in test.jpg -out dectest.jpg
+
+　wsl　debianで実行　　-pbkdf2 推奨オプション
+
