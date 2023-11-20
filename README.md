@@ -36,10 +36,13 @@ privatekey は　PUBLIC KEY を作る時に利用　PUBLIC KEYにはprivatekey�
  openssl enc -e -aes-256-cbc -pbkdf2 -in test.jpg -out enctest.jpg
 
  ファイルを調べてみる
+ 
   file enctest.jpg
 enctest.jpg: openssl enc'd data with salted password
 
+
 openssl enc -d -aes-256-cbc -pbkdf2 -in test.jpg -out dectest.jpg
+
 
 　wsl　debianで実行　　-pbkdf2 推奨オプション
 
