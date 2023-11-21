@@ -46,3 +46,16 @@ openssl enc -d -aes-256-cbc -pbkdf2 -in test.jpg -out dectest.jpg
 
 　wsl　debianで実行　　-pbkdf2 推奨オプション
 
+### openssl コマンドで　ランダムを生成
+32byte パスワードの生成
+        openssl rand -base64 -out passward 32
+        
+        最後の数字は　バイト数
+cat passward
+
+X0ZhryO1DN12UBWp9YHUnf033mIslrU+yt/x0M6Z9Ig=
+
+ wc passward
+ 1  1 45 passward
+
+ 
