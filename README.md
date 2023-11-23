@@ -58,4 +58,22 @@ X0ZhryO1DN12UBWp9YHUnf033mIslrU+yt/x0M6Z9Ig=
  wc passward
  1  1 45 passward
 
+
+#### rsautl コマンド
+rsautl  間違いやすいポイント　decrypt　復号　-d省略はできない
+
+                -infile　- ハイフンをつける
+                
+         openssl rsautl -encrypt -in 2he.txt  -out 2henc.dat -inkey secret.key
+         
+
+        暗号化は上記の　構文　-inkey の場所はどこでも可（状況により）
+        
+        secret.key は　rsagenコマンドで作ったプライベートkey
+
+
+         openssl rsautl -decrypt -in 2henc.dat  -out 2hetest.txt -inkey secret.key
+
+        復号は　-decrypt -out 出力するファイルは拡張子を変える事
+
  
