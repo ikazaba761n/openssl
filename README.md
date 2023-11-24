@@ -142,4 +142,11 @@ Exponent: 65537 (0x10001)
 #### openssl pkey -pubin -in pubikey.pem -text -noout 
 -pubin パブリッキーを指定　マニュアルだと指定しないとプライベートkeyとなる
 
+#### A challenge password  csrファイルを作る時に入力　入れなくても可
+  プライベートkeyを作る時のパスワードではない
+  A challenge password は証明書を破棄するためのパスワード
+  csrファイルを　テキストで出力するときにパスワードが表示されるので驚く
+  プライベートkeyを作る時のパスワードと同じにしないこと
+  
+
 
