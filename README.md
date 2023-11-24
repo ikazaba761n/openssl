@@ -77,3 +77,69 @@ rsautl  間違いやすいポイント　decrypt　復号　-d省略はできな
         復号は　-decrypt -out 出力するファイルは拡張子を変える事
 
  
+#### openssl pkey を使う　ヘルプを表示するには　ハイフンは使わない
+openssl  help pkey
+Usage: pkey [options]
+Valid options are:
+ -help             Display this summary
+ -inform format    Input format (DER or PEM)
+ -outform PEM|DER  Output format (DER or PEM)
+ -passin val       Input file pass phrase source
+ -passout val      Output file pass phrase source
+ -in val           Input key
+ -out outfile      Output file
+ -pubin            Read public key from input (default is private key)
+ -pubout           Output public key, not private
+ -text_pub         Only output public key components
+ -text             Output in plaintext as well
+ -noout            Don't output the key
+ -*                Any supported cipher
+ -traditional      Use traditional format for private keys
+ -engine val       Use engine, possibly a hardware device
+ -check            Check key consistency
+ -pubcheck         Check public key consistency
+
+ #### プライベートkeyを作成
+ openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -aes-128-cbc > prikey.pem
+
+ #### ファイルの中身を調べる　テキスト文字である
+  file prikey.pem
+prikey.pem: ASCII text
+
+#### pkey サブコマンドで調べる　
+openssl pkey -in prikey.pem -text -noout
+
+#### モジュール　などを表示
+RSA Private-Key: (2048 bit, 2 primes)
+modulus:
+    00:bf:d6:2d:bf:8b:20:55:05:12:4c:22:b7:33:ff:
+    
+publicExponent: 65537 (0x10001)
+privateExponent:
+    37:b3:
+prime1:
+    00:de:
+prime2:
+    00:dc:
+exponent1:
+    00:b8
+exponent2:
+    33:5
+coefficient:
+    5c:98
+#### プライベートkeyから　パブリックキーを作成
+openssl pkey -pubout < prikey.pem > pubikey.pem
+### パブリックキーの内容を表示
+  openssl pkey -in pubikey.pem -text -noout
+  上記では表示されない
+#### 以下のコマンドだと表示される
+openssl pkey -text -noout -pubin < pubikey.pem
+RSA Public-Key: (2048 bit)
+Modulus:
+    00:bf:d6:2d
+Exponent: 65537 (0x10001)
+
+#### openssl pkey -pubin -in pubikey.pem -text -noout 
+-pubin パブリッキーを指定　マニュアルだと指定しないとプライベートkeyとなる
+
+
