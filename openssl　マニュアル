@@ -18,3 +18,7 @@ Valid options are:
  -engine val       Use engine, possibly a hardware device
  -check            Check key consistency
  -pubcheck         Check public key consistency
+
+
+ ### コマンド入力時は　ハイフンは要らない
+ 
