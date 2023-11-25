@@ -142,11 +142,48 @@ Exponent: 65537 (0x10001)
 #### openssl pkey -pubin -in pubikey.pem -text -noout 
 -pubin パブリッキーを指定　マニュアルだと指定しないとプライベートkeyとなる
 
+
+#### csrファイルを作成
+openssl req -new -key prikey.pem > request.csr
+Enter pass phrase for prikey.pem:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+
+
 #### A challenge password  csrファイルを作る時に入力　入れなくても可
   プライベートkeyを作る時のパスワードではない
   A challenge password は証明書を破棄するためのパスワード
   csrファイルを　テキストで出力するときにパスワードが表示されるので驚く
   プライベートkeyを作る時のパスワードと同じにしないこと
+ 
+ Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:test（この文字列が表示される）
+
+
+
+####　openssl req -text -noout < request.csr
+csrファイルをテキストとして表示　サブコマンドは　req
+Certificate Request:
+    Data:
+        Version: 1 (0x0)
+        Subject: C = ja, ST = ja, L = ja, O = ja, OU = ja, CN = ja, emailAddress = p@test
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:bf:
+                Exponent: 65537 (0x10001)
+        Attributes:
+            challengePassword        :test
+    Signature Algorithm: sha256WithRSAEncryption
+         5f:c2:68:9c:b5:dc:c4:84:1d:d3:dd:12:cf:cc
+
+#### 
   
 
 
