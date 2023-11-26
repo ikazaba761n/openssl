@@ -183,7 +183,32 @@ Certificate Request:
     Signature Algorithm: sha256WithRSAEncryption
          5f:c2:68:9c:b5:dc:c4:84:1d:d3:dd:12:cf:cc
 
-#### 
+#### アルゴリズムを指定
+openssl genpkey -out server.key -algorithm EC -pkeyopt ec_paramgen_curve:prime256v1
+
+openssl pkey -text -noout < server.key | more
+Private-Key: (256 bit)
+priv:
+    ef:49:a0:f2:bd:c1:e5:4a:02:fd:5c:bc:32:1c:f1:
+    db:65:a
+pub:
+    04:80:8b:e5:66:ad:70:d8:8c:a9:ee:62:0f:25:87:
+    e7:f1:d0:8a:7a:76:93:c4:dd:40:92:25:ba:66:
+    9a:ef:52:50:41:99:12:16:f3:c6:84:60:d9:a3:fb:
+    0a:cc:41:fe:98
+ASN1 OID: prime256v1
+NIST CURVE: P-256
+
+### less server.key
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg70mg8r3B5UoC/Vy8
+Mhzx22WhzsmlUh6/77Rbv7B/fEKhRANCAASAi+VmrXDYjKnuYg8lh+fx0WfThc+j
+/ar0nqhhqPBiiWCKenaTxN1AkiW6ZprvUlBBmRIW88aEYNmj+wrMQf6Y
+-----END PRIVATE KEY-----
+
+
+
+
   
 
 
