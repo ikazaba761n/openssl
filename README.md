@@ -207,6 +207,26 @@ Mhzx22WhzsmlUh6/77Rbv7B/fEKhRANCAASAi+VmrXDYjKnuYg8lh+fx0WfThc+j
 -----END PRIVATE KEY-----
 
 
+#### openssl ディレクトリの内容
+dir /etc/ssl
+certs  openssl.cnf  private
+
+certs ディレクトリ
+_Root_CA.pem
+_Root_CA_-_G2.pem
+_Primary_Root_CA_-_G3.pem
+
+private ディレクトリ
+sudo dir /etc/ssl/private
+cat ssl-cert-snakeoil.key
+BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w
+-----END PRIVATE KEY-----
+
+#### スネークオイルの意味　あてにならない　効果なし
+SSLのサンプルとしてインストールされている証明書の認証サイトの名前
+
+
 
 
   
