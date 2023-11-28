@@ -25,3 +25,7 @@ Valid options are:
  ### テストブランチを作成
  ### ターミナルで　bashが使える　
  ###　dir ~/ java nvum
+
+ ### dir /etc/ssl/private
+ssl-cert-snakeoil.key
+###プライベートキーをおく
