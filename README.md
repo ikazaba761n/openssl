@@ -228,6 +228,16 @@ SSLのサンプルとしてインストールされている証明書の認証�
 
 
 
+#### 認証局の秘密キーを作成 cnfファイルを指定
+openssl req -new -config /usr/lib/ssl/openssl.cnf -x509 -keyout cakey.pem -out cacert.pem -days 3650 -sha256
+
+
+####  openssl x509 -text -noout -in cacert.pem
+
+
+
+
+
 
   
 
