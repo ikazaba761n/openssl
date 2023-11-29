@@ -23,9 +23,4 @@ Valid options are:
  ### コマンド入力時は　ハイフンは要らない
  ### 変更
  ### テストブランチを作成
- ### ターミナルで　bashが使える　
- ###　dir ~/ java nvum
-
- ### dir /etc/ssl/private
-ssl-cert-snakeoil.key
-###プライベートキーをおく
+ 

@@ -143,3 +143,92 @@ Exponent: 65537 (0x10001)
 -pubin パブリッキーを指定　マニュアルだと指定しないとプライベートkeyとなる
 
 
+#### csrファイルを作成
+openssl req -new -key prikey.pem > request.csr
+Enter pass phrase for prikey.pem:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+
+
+#### A challenge password  csrファイルを作る時に入力　入れなくても可
+  プライベートkeyを作る時のパスワードではない
+  A challenge password は証明書を破棄するためのパスワード
+  csrファイルを　テキストで出力するときにパスワードが表示されるので驚く
+  プライベートkeyを作る時のパスワードと同じにしないこと
+ 
+ Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:test（この文字列が表示される）
+
+
+
+####　openssl req -text -noout < request.csr
+csrファイルをテキストとして表示　サブコマンドは　req
+Certificate Request:
+    Data:
+        Version: 1 (0x0)
+        Subject: C = ja, ST = ja, L = ja, O = ja, OU = ja, CN = ja, emailAddress = p@test
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:bf:
+                Exponent: 65537 (0x10001)
+        Attributes:
+            challengePassword        :test
+    Signature Algorithm: sha256WithRSAEncryption
+         5f:c2:68:9c:b5:dc:c4:84:1d:d3:dd:12:cf:cc
+
+#### アルゴリズムを指定
+openssl genpkey -out server.key -algorithm EC -pkeyopt ec_paramgen_curve:prime256v1
+
+openssl pkey -text -noout < server.key | more
+Private-Key: (256 bit)
+priv:
+    ef:49:a0:f2:bd:c1:e5:4a:02:fd:5c:bc:32:1c:f1:
+    db:65:a
+pub:
+    04:80:8b:e5:66:ad:70:d8:8c:a9:ee:62:0f:25:87:
+    e7:f1:d0:8a:7a:76:93:c4:dd:40:92:25:ba:66:
+    9a:ef:52:50:41:99:12:16:f3:c6:84:60:d9:a3:fb:
+    0a:cc:41:fe:98
+ASN1 OID: prime256v1
+NIST CURVE: P-256
+
+### less server.key
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg70mg8r3B5UoC/Vy8
+Mhzx22WhzsmlUh6/77Rbv7B/fEKhRANCAASAi+VmrXDYjKnuYg8lh+fx0WfThc+j
+/ar0nqhhqPBiiWCKenaTxN1AkiW6ZprvUlBBmRIW88aEYNmj+wrMQf6Y
+-----END PRIVATE KEY-----
+
+
+#### openssl ディレクトリの内容
+dir /etc/ssl
+certs  openssl.cnf  private
+
+certs ディレクトリ
+_Root_CA.pem
+_Root_CA_-_G2.pem
+_Primary_Root_CA_-_G3.pem
+
+private ディレクトリ
+sudo dir /etc/ssl/private
+cat ssl-cert-snakeoil.key
+BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w
+-----END PRIVATE KEY-----
+
+#### スネークオイルの意味　あてにならない　効果なし
+SSLのサンプルとしてインストールされている証明書の認証サイトの名前
+
+
+
+
+  
+
+
