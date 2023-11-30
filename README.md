@@ -235,6 +235,14 @@ openssl req -new -config /usr/lib/ssl/openssl.cnf -x509 -keyout cakey.pem -out c
 ####  openssl x509 -text -noout -in cacert.pem
 
 
+#### cnfファイルを指定しない
+openssl req -new -keyout testkey.pem -out testeq.pem
+
+ls
+testeq.pem  testkey.pem
+
+
+
 
 
 
