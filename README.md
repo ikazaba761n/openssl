@@ -243,6 +243,32 @@ testeq.pem  testkey.pem
 
 
 
+#### /dev/urandom /dev/random
+u  unlocked ランダム　内部を再利用　　urandom 
+random 真の乱数　
+cat /dev/random > random.txt
+ls -lh random.txt
+-rwxrwxrwx 1  2.6G 12月  1 12:17 random.txt
+
+cat /dev/urandom > urandom.txt
+ls -lh urandom.txt
+-rwxrwxrwx 1  1.2G 12月  1 12:17 random.txt
+#### 保有している乱数の表示
+cat /proc/sys/kernel/random/entropy_avail
+4096
+#### 上限設定
+cat /proc/sys/kernel/random/poolsize
+4096
+#### 乱数　エントロピープールは違う。
+#### > cat /dev/random > testrandom.txt
+
+処理時間がかかる、２ギガを１分くらいかけてテキストに入力
+hdd デバイスに乱数を書き込んで消去には向かない　dd　引数if
+
+
+
+
+
 
 
 
