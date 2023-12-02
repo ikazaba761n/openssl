@@ -265,6 +265,31 @@ cat /proc/sys/kernel/random/poolsize
 処理時間がかかる、２ギガを１分くらいかけてテキストに入力
 hdd デバイスに乱数を書き込んで消去には向かない　dd　引数if
 
+#### openssl genpkey pkey
+2023年 12月  2日 土曜日 13:17:26 JST
+
+
+
+        openssl pkey キーの作成　確認
+
+ openssl genpkey -algorithm ed25519 -out server_key.pem
+        アルゴリズムを　ed25519
+
+        確認するには　pkeyコマンドが必要　rsaではできない
+        rsaでキーを作成していないので当然か
+openssl pkey -text -noout -in server_key.pem
+ED25519 Private-Key:
+priv:
+    e9:7d:7d:c0:93:8c:62:8c:1c:e1:25:4a:0d:15:f5:
+    7a:98:28:91:b5:63:d4:28:a0:e3:5b:81:51:fe:d3:
+    b4:34
+pub:
+    26:af:7d:5c:92:36:d8:73:57:72:95:89:ae:e7:bf:
+    c7:ad:a9:26:71:e7:7d:d4:33:10:75:aa:8d:0a:cc:
+    b6:62
+    
+
+
 
 
 
