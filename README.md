@@ -287,7 +287,16 @@ pub:
     26:af:7d:5c:92:36:d8:73:57:72:95:89:ae:e7:bf:
     c7:ad:a9:26:71:e7:7d:d4:33:10:75:aa:8d:0a:cc:
     b6:62
-    
+ #### openssl genrsa genpkey
+ 3.o　では　genrsa 非推奨となっている
+ This command has been deprecated. The openssl-genpkey(1) command should be used instead.
+
+
+ #### キー作成　rsaを指定
+ openssl genpkey -out testdec3.key -algorithm RSA -pkeyopt rsa_keygen_bits:4096
+
+ #### キー確認
+  openssl pkey -text -noout -in testdec3.key
 
 
 
