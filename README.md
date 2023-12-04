@@ -298,7 +298,61 @@ pub:
  #### キー確認
   openssl pkey -text -noout -in testdec3.key
 
+#### ssl/tls 対応確認　openssl サブコマンド　s_client
+openssl s_client -connect www.google.com:443
+#### グーグルwebサイト　https　ポート　443　確認
+CONNECTED(00000003)
+depth=2 C = US, O = Google Trust Services LLC, CN = GTS Root R1
+verify return:1
+depth=1 C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+verify return:1
+depth=0 CN = www.google.com
+verify return:1
+---
+Certificate chain
+ 0 s:CN = www.google.com
+   i:C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+ 1 s:C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+   i:C = US, O = Google Trust Services LLC, CN = GTS Root R1
+ 2 s:C = US, O = Google Trust Services LLC, CN = GTS Root R1
+   i:C = BE, O = GlobalSign nv-sa, OU = Root CA, CN = GlobalSign Root CA
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+TUdJzBqBggrBgEFBQcBAQReMFwwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3Nw
+LnBraS5nb29nL2d0czFjMzAxBggrBgEFBQcwAoYlaHR0cDovL3BraS5nb29nL3Jl
+cG8vY2VydHMvZ3RzMWMzLmRlcjAZBgNVHREEEjAQgg53d3cuZ29vZ2xlLmNvbTAh
+BgNVHSAEGjAYMAgGBmeBDiPeRwiiPZFXXAYMbWWnLD0Hw60dTX790fReAB2
+AHb/iD8KtvuVUcJhzPWHujS0pM27KdxoQgqf5mdMWjp0AAABi1x+1+kAAAQDAEcw
+RQIhAIWdZThm1Q==
+-----END CERTIFICATE-----
+subject=CN = www.google.com
 
+issuer=C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: ECDSA
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 4293 bytes and written 386 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 256 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+read:errno=0
+#### CN(コモンネーム≒ドメイン) 
+     depth=2 ルート証明書。
+     depth=1 中間CA証明書。
+     depth=0 TLSサーバー証明書
 
 
 
