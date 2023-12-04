@@ -301,6 +301,7 @@ pub:
 #### ssl/tls 対応確認　openssl サブコマンド　s_client
 openssl s_client -connect www.google.com:443
 #### グーグルwebサイト　https　ポート　443　確認
+#####
 CONNECTED(00000003)
 depth=2 C = US, O = Google Trust Services LLC, CN = GTS Root R1
 verify return:1
