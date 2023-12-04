@@ -1,4 +1,4 @@
-# openssl
+s# openssl
 
  openssl version -a
 OpenSSL 1.1.1n  15 Mar 2022
@@ -354,6 +354,49 @@ read:errno=0
      depth=2 ルート証明書。
      depth=1 中間CA証明書。
      depth=0 TLSサーバー証明書
+
+
+ ##### crl file 確認　
+ $ openssl crl -inform der -in SCRoot2CRL.crl -text | more
+Certificate Revocation List (CRL):
+        Version 2 (0x1)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = JP, O = "SECOM Trust Systems CO.,LTD.", OU = Security Communicati
+on RootCA2
+        Last Update: Nov 29 05:46:59 2023 GMT
+        Next Update: Nov 27 05:46:59 2024 GMT
+        CRL extensions:
+            X509v3 Authority Key Identifier:
+                keyid:0A:85:A9:77:65:05:98:7C:40:81:F8:0F:97:2C:38:F1:0A:EC:3C:CF
+
+            X509v3 CRL Number:
+                162
+Revoked Certificates:
+    Serial Number: 22B9B0BD
+        Revocation Date: May 27 06:18:09 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0C6
+        Revocation Date: May 27 06:21:34 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0C7
+        Revocation Date: Aug 31 06:31:33 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0CA
+        Revocation Date: May 27 05:18:58 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0CC
+        Revocation Date: Aug 31 06:04:44 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
 
 
 
