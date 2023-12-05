@@ -397,6 +397,26 @@ Revoked Certificates:
         CRL entry extensions:
             X509v3 CRL Reason Code:
                 Cessation Of Operation
+ #### openssl  pkey -text -noout プライベートキーを表示させない
+
+ RSA Private-Key: (2048 bit, 2 primes)
+modulus:
+    00:d8:60:1d:5a:32:47:8f:c1:0a:c1:95:ea:9d:d2:
+
+-----BEGIN PRIVATE KEY-----
+MIIjLZertP/x+bHJ/vkETwC+ahZx4=
+-----END PRIVATE KEY-----
+RSA Private-Key: (4096 bit, 2 primes)
+modulus:
+    00:d8:60:1d:5a:32:47:8f:c1:0a:c1:95:ea:9d:d2:
+
+ 暗号化の係数も表示される
+coefficient:
+    6b:84:8b:46:b8:00:71:7e:16:f6:58:96:f0:27:b1:
+    
+    
+    
+    
 
 
 
