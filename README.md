@@ -413,7 +413,44 @@ modulus:
  暗号化の係数も表示される
 coefficient:
     6b:84:8b:46:b8:00:71:7e:16:f6:58:96:f0:27:b1:
-    
+
+
+#### openssl  openssl s_client -connect 
+echo | openssl s_client -connect  www.google.com:443 2>/dev/null | \
+  sed -ne '/BEGIN CERT/,/END CERT/p' > svrcert.pem
+--google サーバーから証明書を抽出--
+$ ls
+svrcert.pem
+
+-- pem ファイルを確認
+openssl x509 -text -noout -in svrcert.pem
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            5d:ab:b4:40:
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+        Validity
+            Not Before: Oct 23 11:24:57 2023 GMT
+            Not After : Jan 15 11:24:56 2024 GMT
+        Subject: CN = www.google.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:c0:
+----- 証明書　すべて
+openssl s_client -connect www.google.com:443 -showcerts
+CONNECTED(00000003)
+depth=2 C = US, O = Google Trust Services LLC, CN = GTS Root R1
+verify return:1
+depth=1 C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+verify return:1
+depth=0 CN = www.google.com
+verify return:1
+---
+Certificate chain
     
     
     
