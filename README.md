@@ -1,4 +1,4 @@
-# openssl
+s# openssl
 
  openssl version -a
 OpenSSL 1.1.1n  15 Mar 2022
@@ -225,6 +225,240 @@ MIIEvAIBADANBgkqhkiG9w
 
 #### スネークオイルの意味　あてにならない　効果なし
 SSLのサンプルとしてインストールされている証明書の認証サイトの名前
+
+
+
+#### 認証局の秘密キーを作成 cnfファイルを指定
+openssl req -new -config /usr/lib/ssl/openssl.cnf -x509 -keyout cakey.pem -out cacert.pem -days 3650 -sha256
+
+
+####  openssl x509 -text -noout -in cacert.pem
+
+
+#### cnfファイルを指定しない
+openssl req -new -keyout testkey.pem -out testeq.pem
+
+ls
+testeq.pem  testkey.pem
+
+
+
+#### /dev/urandom /dev/random
+u  unlocked ランダム　内部を再利用　　urandom 
+random 真の乱数　
+cat /dev/random > random.txt
+ls -lh random.txt
+-rwxrwxrwx 1  2.6G 12月  1 12:17 random.txt
+
+cat /dev/urandom > urandom.txt
+ls -lh urandom.txt
+-rwxrwxrwx 1  1.2G 12月  1 12:17 random.txt
+#### 保有している乱数の表示
+cat /proc/sys/kernel/random/entropy_avail
+4096
+#### 上限設定
+cat /proc/sys/kernel/random/poolsize
+4096
+#### 乱数　エントロピープールは違う。
+#### > cat /dev/random > testrandom.txt
+
+処理時間がかかる、２ギガを１分くらいかけてテキストに入力
+hdd デバイスに乱数を書き込んで消去には向かない　dd　引数if
+
+#### openssl genpkey pkey
+2023年 12月  2日 土曜日 13:17:26 JST
+
+
+
+        openssl pkey キーの作成　確認
+
+ openssl genpkey -algorithm ed25519 -out server_key.pem
+        アルゴリズムを　ed25519
+
+        確認するには　pkeyコマンドが必要　rsaではできない
+        rsaでキーを作成していないので当然か
+openssl pkey -text -noout -in server_key.pem
+ED25519 Private-Key:
+priv:
+    e9:7d:7d:c0:93:8c:62:8c:1c:e1:25:4a:0d:15:f5:
+    7a:98:28:91:b5:63:d4:28:a0:e3:5b:81:51:fe:d3:
+    b4:34
+pub:
+    26:af:7d:5c:92:36:d8:73:57:72:95:89:ae:e7:bf:
+    c7:ad:a9:26:71:e7:7d:d4:33:10:75:aa:8d:0a:cc:
+    b6:62
+ #### openssl genrsa genpkey
+ 3.o　では　genrsa 非推奨となっている
+ This command has been deprecated. The openssl-genpkey(1) command should be used instead.
+
+
+ #### キー作成　rsaを指定
+ openssl genpkey -out testdec3.key -algorithm RSA -pkeyopt rsa_keygen_bits:4096
+
+ #### キー確認
+  openssl pkey -text -noout -in testdec3.key
+
+#### ssl/tls 対応確認　openssl サブコマンド　s_client
+openssl s_client -connect www.google.com:443
+#### グーグルwebサイト　https　ポート　443　確認
+#####
+CONNECTED(00000003)
+depth=2 C = US, O = Google Trust Services LLC, CN = GTS Root R1
+verify return:1
+depth=1 C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+verify return:1
+depth=0 CN = www.google.com
+verify return:1
+---
+Certificate chain
+ 0 s:CN = www.google.com
+   i:C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+ 1 s:C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+   i:C = US, O = Google Trust Services LLC, CN = GTS Root R1
+ 2 s:C = US, O = Google Trust Services LLC, CN = GTS Root R1
+   i:C = BE, O = GlobalSign nv-sa, OU = Root CA, CN = GlobalSign Root CA
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+TUdJzBqBggrBgEFBQcBAQReMFwwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3Nw
+LnBraS5nb29nL2d0czFjMzAxBggrBgEFBQcwAoYlaHR0cDovL3BraS5nb29nL3Jl
+cG8vY2VydHMvZ3RzMWMzLmRlcjAZBgNVHREEEjAQgg53d3cuZ29vZ2xlLmNvbTAh
+BgNVHSAEGjAYMAgGBmeBDiPeRwiiPZFXXAYMbWWnLD0Hw60dTX790fReAB2
+AHb/iD8KtvuVUcJhzPWHujS0pM27KdxoQgqf5mdMWjp0AAABi1x+1+kAAAQDAEcw
+RQIhAIWdZThm1Q==
+-----END CERTIFICATE-----
+subject=CN = www.google.com
+
+issuer=C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: ECDSA
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 4293 bytes and written 386 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 256 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+read:errno=0
+#### CN(コモンネーム≒ドメイン) 
+     depth=2 ルート証明書。
+     depth=1 中間CA証明書。
+     depth=0 TLSサーバー証明書
+
+
+ ##### crl file 確認　
+ $ openssl crl -inform der -in SCRoot2CRL.crl -text | more
+Certificate Revocation List (CRL):
+        Version 2 (0x1)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = JP, O = "SECOM Trust Systems CO.,LTD.", OU = Security Communicati
+on RootCA2
+        Last Update: Nov 29 05:46:59 2023 GMT
+        Next Update: Nov 27 05:46:59 2024 GMT
+        CRL extensions:
+            X509v3 Authority Key Identifier:
+                keyid:0A:85:A9:77:65:05:98:7C:40:81:F8:0F:97:2C:38:F1:0A:EC:3C:CF
+
+            X509v3 CRL Number:
+                162
+Revoked Certificates:
+    Serial Number: 22B9B0BD
+        Revocation Date: May 27 06:18:09 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0C6
+        Revocation Date: May 27 06:21:34 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0C7
+        Revocation Date: Aug 31 06:31:33 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0CA
+        Revocation Date: May 27 05:18:58 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+    Serial Number: 22B9B0CC
+        Revocation Date: Aug 31 06:04:44 2021 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code:
+                Cessation Of Operation
+ #### openssl  pkey -text -noout プライベートキーを表示させない
+
+ RSA Private-Key: (2048 bit, 2 primes)
+modulus:
+    00:d8:60:1d:5a:32:47:8f:c1:0a:c1:95:ea:9d:d2:
+
+-----BEGIN PRIVATE KEY-----
+MIIjLZertP/x+bHJ/vkETwC+ahZx4=
+-----END PRIVATE KEY-----
+RSA Private-Key: (4096 bit, 2 primes)
+modulus:
+    00:d8:60:1d:5a:32:47:8f:c1:0a:c1:95:ea:9d:d2:
+
+ 暗号化の係数も表示される
+coefficient:
+    6b:84:8b:46:b8:00:71:7e:16:f6:58:96:f0:27:b1:
+
+
+#### openssl  openssl s_client -connect 
+echo | openssl s_client -connect  www.google.com:443 2>/dev/null | \
+  sed -ne '/BEGIN CERT/,/END CERT/p' > svrcert.pem
+--google サーバーから証明書を抽出--
+$ ls
+svrcert.pem
+
+-- pem ファイルを確認--
+
+openssl x509 -text -noout -in svrcert.pem
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            5d:ab:b4:40:
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+        Validity
+            Not Before: Oct 23 11:24:57 2023 GMT
+            Not After : Jan 15 11:24:56 2024 GMT
+        Subject: CN = www.google.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:c0:
+----- 証明書　すべて
+openssl s_client -connect www.google.com:443 -showcerts
+CONNECTED(00000003)
+depth=2 C = US, O = Google Trust Services LLC, CN = GTS Root R1
+verify return:1
+depth=1 C = US, O = Google Trust Services LLC, CN = GTS CA 1C3
+verify return:1
+depth=0 CN = www.google.com
+verify return:1
+---
+Certificate chain
+    
+    
+    
+
+
+
+
 
 
 
