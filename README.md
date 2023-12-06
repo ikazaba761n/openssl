@@ -422,7 +422,8 @@ echo | openssl s_client -connect  www.google.com:443 2>/dev/null | \
 $ ls
 svrcert.pem
 
--- pem ファイルを確認
+-- pem ファイルを確認--
+
 openssl x509 -text -noout -in svrcert.pem
 Certificate:
     Data:
