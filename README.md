@@ -452,7 +452,16 @@ depth=0 CN = www.google.com
 verify return:1
 ---
 Certificate chain
-    
+
+#### pkcs8 openssl
+openssl pkcs8 -topk8 -inform PEM -outform PEM -in prikey.pem -out key-pkcs8.pem
+
+Enter Encryption Password:
+Verifying - Enter Encryption Password:
+
+#### text pkcs8
+ cat key-pkcs8.pem | openssl rsa -noout -text
+ 
     
     
 
