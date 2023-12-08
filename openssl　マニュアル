@@ -125,7 +125,15 @@ Valid options are:
 
 
 
-### 削除テスト
+### prikey 自己SSL証明書 pem
+/etc/ssl/private #sudoを使って　ls　cat　確認
+SSL証明書      /etc/ssl/certs/ssl-cert-snakeoil.pem
+SSL証明書private     /etc/ssl/private/ssl-cert-snakeoil.key
+
+sudo vim /etc/apache2/conf-available/ssl-params.conf
+  SSLEngine on
+  SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
+  SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
 
 
  
