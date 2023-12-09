@@ -136,4 +136,39 @@ sudo vim /etc/apache2/conf-available/ssl-params.conf
   SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
 
 
+####
+$ cat githubcert.txt
+
+2023年 12月  9日 土曜日 13:08:06 JST
+
+
+
+サーバの管理者が発行した証明書署名要求(CSR)に対して、認証局(CA)がCAの秘密鍵で署名を 行ったものが証明書(CRT)
+
+        ca openssl genpky  -algorithm ED25519 -out ca2.pem
+        csr  openssl req -new -key ca2.pem -subj "/C=JP/" > ca2.csr
+        crt openssl x509 -days 365 -req -signkey ca2.pem < ca2.csr > ca2.crt
+
+        openssl x509 -text  -noout -in ca2.crt
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number:
+            4f:cd:f8:a:c5:17:05:62:16:3c
+        Signature Algorithm: ED25519
+        Issuer: C = JP
+        Validity
+            Not Before: Dec  9 04:03:08 2023 GMT
+            Not After : Dec  8 04:03:08 2024 GMT
+        Subject: C = JP
+        Subject Public Key Info:
+            Public Key Algorithm: ED25519
+                ED25519 Public-Key:
+                pub:
+                    7e:35:7d:93:c4:45:a5:d3:3e:4c:c7:8e:c1:73:e7:
+                    63:58
+    Signature Algorithm: ED25519
+         dd:c7:7d:dd:b2:9e:ba:c4:ec:7a:34:77:5c:90:74:b4:db:c6:
+
+
  
