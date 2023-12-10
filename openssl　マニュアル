@@ -171,4 +171,11 @@ Certificate:
          dd:c7:7d:dd:b2:9e:ba:c4:ec:7a:34:77:5c:90:74:b4:db:c6:
 
 
+
+20231210 12月10日　午後四時半
+
+openssl x509 -req -days 3650 -signkey key.pem < request.csr > test.crt
+< request.csr を　x509コマンドに入力　> test.crtで作成
+
+
  
