@@ -178,4 +178,12 @@ openssl x509 -req -days 3650 -signkey key.pem < request.csr > test.crt
 < request.csr を　x509コマンドに入力　> test.crtで作成
 
 
+20231212 12月１２日　午後一時
+csr　要求ファイルは　　reqコマンドで　作成　確認
+crl　証明書は　x５０９コマンドで確認　作成
+
+-------混同すると　エラーで　困惑する　x５０９では　pri.keyを　-signkey 引数に使う
+
+
+
  
