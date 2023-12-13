@@ -184,6 +184,34 @@ crl　証明書は　x５０９コマンドで確認　作成
 
 -------混同すると　エラーで　困惑する　x５０９では　pri.keyを　-signkey 引数に使う
 
+20231213 １２月１３日　水曜日　午後１２時半
+openssl req コマンドで　秘密keyを同時に作る
+     /dev/urandom   ランダム種コマンドを利用する
+$ openssl req -newkey rsa:2048 -keyout encrypted_privkey.pem -rand /dev/urandom
+　標準出力されるので　リダイレクト　＞　を使うか　画面表示のbginから始まる文字を
+コピーして　使うこともできる　要求csr自体も内包されている
+実行　Generating a RSA private key
+-----BEGIN CERTIFICATE REQUEST-----
+MIICkjCCAXoCAQAwTTELMAkGA1UEBhMCamExCzAJBgNVBAgMAmVlMQswCQYDVQQH
+DAJxcTELMAkGA1UECgwCZGQxCzAJBgNVBAsMAmZmMQowCAYDVQQDDAFhMIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr
+-----END CERTIFICATE REQUEST-----
+
+秘密キー　encrypted_privkey.pem　の　パスフレーズを外すコマンド
+openssl rsa -in encrypted_privkey.pem -out decrypted_privatekey.pem
+Enter pass phrase for encrypted_privkey.pem:パスフレーズを入力
+openssl rsa -text -noout -in decrypted_privatekey.pem
+RSA Private-Key: (2048 bit, 2 primes)
+modulus:
+
+encrypted_privkey.pem　を　catコマンドで見ると
+cat decrypted_privatekey.pem
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEArVPBgdulfS89av9YYweG/33ALz4r1Esb1JQKDUkDfGAZTqPm
+qG+6uJ0bImaMCnmCXUcf3nDUrnl3
+gIfWE/qIqNvUBruQ0xeLOzq3sWA9b0=
+-----END RSA PRIVATE KEY-----
+プライム　素数や　モジュールは表示されない
 
 
  
