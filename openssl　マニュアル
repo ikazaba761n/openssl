@@ -214,4 +214,19 @@ gIfWE/qIqNvUBruQ0xeLOzq3sWA9b0=
 プライム　素数や　モジュールは表示されない
 
 
+#### ファイルからハッシュを作る　md5は使わない
+openssl dgst -sha256 hash.txt
+SHA256(hash.txt)= 99002a8cb2a4469a7804fd0b87b66714cb5dd5f8aee062dc04449d4d778436c3
+
+openssl dgst -sha256 hash3.txt
+SHA256(hash3.txt)= 2f023ba4520b5b36d8a0cc160a976297cbb5a11df5192898996efa77b9827e0e
+
+署名をする
+openssl dgst -sha256 -sign private-key.pem test.txt > signature.dat
+
+電子署名を検証する
+openssl dgst -sha256 -verify public-key.pem -signature signature.dat test.txt
+
+
+
  
