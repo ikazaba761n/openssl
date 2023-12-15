@@ -227,6 +227,63 @@ openssl dgst -sha256 -sign private-key.pem test.txt > signature.dat
 電子署名を検証する
 openssl dgst -sha256 -verify public-key.pem -signature signature.dat test.txt
 
+楕円曲線（ elliptic curve）
+#### openssl ecparam -name prime256v1 -genkey -noout -out key.pem
+ cat key.pem
+-----BEGIN EC PRIVATE KEY-----
+MHcCAQEEII56reAAYQ2xDYAmNwsRQeXdSmWfJ4T43YSC1oANY4e3oAoGCCqGSM49
+AwEHoUQDQgAEVEEGwYl/JMCQsMc
+-----END EC PRIVATE KEY----
+
+openssl pkey -text -in key.pem
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgjnqt4ABhDbENgCY3
+CxFB5d1KZZ8nhPjdhU/u
+-----END PRIVATE KEY-----
+Private-Key: (256 bit)
+priv:
+    8e:7a:ad:e0:
+pub:
+    04:54:41:06:c7:2c:5b:34:
+    6867:7d:d0:ec:8c:9f:85:54:6a:21:c1:a3:00:
+    5e:3c:f1:4f:ee
+ASN1 OID: prime256v1
+NIST CURVE: P-256
+
+### keyout.pem public
+openssl ec -in key.pem -des3 -out keyout.pem
+read EC key
+writing EC key
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+
+ openssl ec -in keyout.pem -text -noout
+read EC key
+Enter PEM pass phrase:
+Private-Key: (256 bit)
+priv:
+    8e:a:65:9f:27:84:f8:dd:84:82:d6:80:0d:63:
+    87:b7
+pub:
+    04:54:41:06:c1:89:7f:24:c0:90:b0:c7:2c:5b:34:
+    6ec:8c:9f:85:54:6a:21:c1:a3:00:
+    5e:3c:f1:4f:ee
+ASN1 OID: prime256v1
+NIST CURVE: P-256
+
+### diff
+ diff key.pem  keyout.pem
+2,4c2,7
+< MHcCAQEEII56reAAYQ2xDYAmNwsRQeXdSmWfJ4T43YSC1oANY4e3oAoGCCqGSM49
+< AwEHoUQufNma
+< mBBdD83HVGd90OyMn4VUaiHBowBePPFP7g==
+---
+> Proc-Type: 4,ENCRYPTED
+> DEK-Info: DES-EDE3-CBC,54F65B62166C3F9B
+>
+> 6WKD5qroWH/kk22VSRXv
+> jiiiTUSyxK4L134Hm5DIvvBCmo
+
 
 
  
