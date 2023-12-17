@@ -293,4 +293,15 @@ subjectAltName = @alt_names
 [ alt_names ]
 DNS.1 = snekeoil.com
 DNS.2 = snekeoiltwo.com
+
+#### ターミナルでの　入力を待たないで　実行する　< /dev/null
+標準入力を /dev/null 
+openssl s_client -connect www.test.ee.qq:443 -servername www.test.ee.qq -showcerts < /dev/null
+Certificate chain
+ 0 s:/C=
+
+
+
+
+
  
