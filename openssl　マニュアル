@@ -311,6 +311,14 @@ ll /usr/share/ca-certificates/mozilla
 
 
 
+####　openssl help ca
+ -batch                  Don't ask questions
+
+openssl ヘルプコマンドは　- バーを入れない
+
+
+
+
 
 
 
