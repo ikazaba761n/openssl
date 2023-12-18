@@ -301,6 +301,17 @@ Certificate chain
  0 s:/C=
 
 
+#### debian サーバ証明書　crtファイルを　調べる
+ll /etc/ssl/certs | grep crt
+ll　は　ls-l　のエイリアス
+lrwxrwxrwx 1 root root   55  9月 18  2021  CA_Disig_Root_R2.pem -> /usr/share/ca-certificates/
+ll /usr/share/ca-certificates/mozilla
+合計 548K
+-rw-r--r-- 1 root root 2.8K  1月 28  2021  derAIZ1.crt
+
+
+
+
 
 
 
