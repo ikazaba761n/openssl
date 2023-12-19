@@ -317,6 +317,10 @@ ll /usr/share/ca-certificates/mozilla
 openssl ヘルプコマンドは　- バーを入れない
 
 
+#### openssl -ca -selfsign               Sign a cert with the key associated with it
+関連付けられたキーを使用して証明書に署名
+
+
 
 
 
