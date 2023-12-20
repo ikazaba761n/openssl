@@ -336,6 +336,10 @@ optional なくてもよい 値があってもよい
 supplied 無くてはならないが整合しなくてもよい
 
 
+##### subjectAltName リストに、Foundational Services エンドポイントの外部ホスト名を含める
+
+
+
 
 
 
