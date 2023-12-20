@@ -321,7 +321,19 @@ openssl ヘルプコマンドは　- バーを入れない
 関連付けられたキーを使用して証明書に署名
 
 
+#### policy match  設定の意味
+# For the CA policy
+[ policy_match ]
+countryName             = match
+stateOrProvinceName     = match
+organizationName        = match
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
 
+match csrリクエストとの値と一致しなくてはならない
+optional なくてもよい 値があってもよい
+supplied 無くてはならないが整合しなくてもよい
 
 
 
