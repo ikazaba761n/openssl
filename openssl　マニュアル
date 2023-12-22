@@ -339,6 +339,17 @@ supplied 無くてはならないが整合しなくてもよい
 
 
 
+####　中間CAcsr　署名
+openssl ca コマンドで　プロファイルを指定
+openssl ca -policy policy_anything 
+other_policies  = tsa_policy2, tsa_policy3
+
+-config  signCA.cnf ルートcaのファイル  
+-in cacert.csr 　中間証明書のあるディレクトリ内の要求ファイル
+ -out /cacert.pem 中間証明書のディレクトリ
+
+
+
 
 
 
