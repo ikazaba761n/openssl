@@ -349,6 +349,14 @@ other_policies  = tsa_policy2, tsa_policy3
  -out /cacert.pem 中間証明書のディレクトリ
 
 
+#### エンティティ　
+
+エンティティ X.509  PKI 利用者 CA X.509 証明書は、
+「CN (Common Name): test Secure Server CA
+ CA が CN: test.test の所有者に対して署名し発行したもの
+
+SubjectとIssuerが同じの自己署名証明書、上位の証明書はない
+
 
 
 
