@@ -359,6 +359,35 @@ SubjectとIssuerが同じの自己署名証明書、上位の証明書はない
 
 
 
+####  openssl ディレクトリを表示　version コマンドに　引数　-a を加える
+ openssl version -a
+OpenSSL 1.1.1n  15 Mar 2022
+built on: Tue Aug 15 19:14:44 2023 UTC
+platform: os_name
+options:  bn(64,64) rc4(8x,int) des(int) blowfish(ptr)
+compiler: gcc -fP
+OPENSSLDIR: "/usr/lib/ssl"
+ENGINESDIR: "/usr/lib/x86_64-linux-gnu/engines-1.1"
+Seeding source: os-specific
+
+$ openssl help version
+Usage: version [options]
+Valid options are:
+ -help  Display this summary
+ -a     Show all data
+ -b     Show build date
+ -d     Show configuration directory
+ -e     Show engines directory
+ -f     Show compiler flags used
+ -o     Show some internal datatype options
+ -p     Show target build platform
+ -r     Show random seeding options
+ -v     Show library version
+
+
+
+
+
 
 
 
