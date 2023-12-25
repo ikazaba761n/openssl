@@ -387,6 +387,46 @@ Valid options are:
 
 
 
+#### CA 認証局を作る　CA.pl パールスクリプトを　引数　-newca で起動
+ /usr/lib/ssl/misc
+$ ls
+CA.pl  tsget  tsget.pl
+
+/usr/lib/ssl/misc/CA.pl -newca　　エンターで起動
+ファイル名を聞かれるが　何も入力無しで　エンター
+国名、所属　ＣＮウェブアドレスを　入力　ここを起点にサーバ証明書をつくる
+csrファイルには同じ値を入れる　openssl.cnf でその値はプロファイルとして指定されている
+カレントディレクトリ　以下に多数のファイル、ディレクトリができる
+
+プライベートキーを保護する
+chmod 600 ./demoCA/private/cakey.pem 
+sudo chown root:root ./demoCA/private/cakey.pem
+
+リクエストコマンドで　csrファイルを作る
+openssl req -new -keyout key.pem -out req.pem -newkey rsa:2048
+
+カレントディレクトリの　key.pem req.pem を使って証明書を作る
+openssl ca -out cert.pem -infiles req.pem
+
+証明書とサーバー証明書の値が違うとエラーとなる　ja＝ja　例jpとするとエラーとなる
+
+カレントディレクトリに　cert.pem　サーバ証明書ができる
+openssl x508 -text -in cert.pem 表示して確認
+ca証明書と　サーバー証明書は違うという認識を理解するまでは難しいが、パールのスクリプトを
+使えばとりあえず　サーバ証明書をサーバのディレクトリに格納できる
+
+ファイルの中身の違いを確認
+ diff cert.pem ./demoCA/newcerts/61F27096773DA.pem
+
+サーバ証明書にはネットスケープの文字がある　カレントディレクトリのcert.pem
+ cat cert.pem | grep Net
+            Netscape Comment:
+
+
+
+
+
+
 
 
 
