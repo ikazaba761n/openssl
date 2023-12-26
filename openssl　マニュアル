@@ -424,6 +424,37 @@ ca証明書と　サーバー証明書は違うという認識を理解するま
 
 
 
+#### openssl pkey コマンド　
+ openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 > private_key.pem
+  ファイルを出力する　>　
+openssl pkey -text -noout -in private_key.pem 
+　内容を確認する　-noout エンコードされたテキスト文字を表示しない
+openssl pkey -pubout -in private_key.pem > public_key.pem
+ 秘密鍵から公開鍵を抜き出す　> 記号を使う -in でも同じ
+ openssl pkey -text -pubin < public_key.pem  -noout
+ 　公開鍵をテキストで表示　-pubin を使う
+
+ pkeyコマンドを使うときの　混乱原因　-pubin 引数で入力を記述　<　記号でファイルを指定
+-inform format PEM 大文字で指定
+-inform format    Input format (DER or PEM)
+pkcs7 pkcs12 -in -out 混同するので確認　
+openssl help pkcs7
+Usage: pkcs7 [options]
+Valid options are:
+ -help             Display this summary
+ -inform PEM|DER   Input format - DER or PEM
+ -in infile        Input file
+ -outform PEM|DER  Output format - DER or PEM
+ -out outfile      Output file
+ -noout            Don't output encoded data
+ -text             Print full details of certificates
+ -print            Print out all fields of the PKCS7 structure
+ -print_certs      Print_certs  print any certs or crl in the input
+ -engine val       Use engine, possibly a hardware device
+
+
+
+
 
 
 
