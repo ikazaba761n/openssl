@@ -453,6 +453,11 @@ Valid options are:
  -engine val       Use engine, possibly a hardware device
 
 
+####　CA　スクリプト　認証局作成
+/usr/lib/ssl/misc　　　←　/etc/ssl ディレクトリにはない　
+ /usr/lib/ssl/misc/CA.pl -newca　引数を入れる　ファイル名は無し
+
+
 
 
 
