@@ -458,6 +458,15 @@ Valid options are:
  /usr/lib/ssl/misc/CA.pl -newca　引数を入れる　ファイル名は無し
 
 
+#### /usr/lib/ssl/misc/CA.pl -newreq  要求ファイルを作る
+ /usr/lib/ssl/misc/CA.pl -sign　署名する
+/etc/ssl/openssl.cnf 設定ファイルと相違すると
+========openssl ca  -policy policy_anything -out newcert.pem  -infiles newreq.pem
+========Using configuration from /usr/lib/ssl/openssl.cnf
+========Can't open-----
+ca.pl の　コードを読むことで　openssl のコマンドの使用が理解可能で
+opensslでの認証局作業する場合は　ディレクトリを変更しないとエラーとなる
+
 
 
 
