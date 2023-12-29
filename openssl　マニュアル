@@ -469,6 +469,23 @@ opensslでの認証局作業する場合は　ディレクトリを変更しな�
 
 
 
+#### openssl 秘密キーのパスフレーズを外すときの　不明エラー
+openssl pkey -in encrypted_privkey.pem -text  -out de3.pem
+Enter pass phrase for encrypted_privkey.pem:
+上記のように　パスフレーズを入力できる
+
+openssl pkey -in encrypted_privatekey.pem -text -out nnttt.pem
+Can't open encrypted_privatekey.pem for reading, No such file or directory
+953720000:error:02001002:system library:fopen:No such file or directory:../crypto/bio/bss_file.c:69:fopen('encrypted_privatekey.pem','r')
+953720000:error:2006D080:BIO routines:BIO_new_file:no such file:../crypto/bio/bss_file.c:76:
+unable to load key
+
+ファイル名が違うだけで　エラーとなる　タイプミスの可能性もあるが
+なぜエラーになるか不明　-text オプションをつけないと　エラーとなる場合もある　再現性は不明
+2023年12月29日
+
+
+
 
 
 
