@@ -485,6 +485,20 @@ unable to load key
 2023年12月29日
 
 
+#### 最終　2023年12月31日　opensslによる　サーバ証明書に　署名する####
+
+openssl ca -md sha256 -config openssl-rootca.cnf -cert cacert.pem -keyfile key.pem -out testroom.pem -infiles CSR.pem
+
+req コマンドで　-config testopenssl.cnf　指定　cacertファイルと　key.pem　の　二つを作成
+サーバ証明書を　キー作成してから　-infiles で使う　csr.pem　を作成　
+
+cnf　ファイルの設定が手数がかかる
+CA.pl 使用は　cnfファイル指定方法がつまずきやすい　ディレクトリを作る作業に利用
+caコマンドを最後に使うのが早い
+
+
+
+
 
 
 
